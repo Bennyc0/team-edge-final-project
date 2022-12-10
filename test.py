@@ -1,5 +1,6 @@
-print(17%2)
-print(80%2)
+from sense_hat import SenseHat
 
-print(124%2)
-print(1293%2)
+sense = SenseHat()
+sense.clear()
+sense.set_pixel(1,2, (255,0,0))
+sense.set_pixel(1,1[0,255,0])
