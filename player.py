@@ -1,6 +1,7 @@
 class Player():
-    def __init__(self, sense):
+    def __init__(self, sense, bg_color):
         self.sense = sense
+        self.bg_color = bg_color
 
         self.x_pos = 2
         self.y_pos = 4
@@ -15,5 +16,5 @@ class Player():
             self.display(1)
     
     def display(self, change):
-        self.sense.set_pixel(self.x_pos, self.y_pos-change, (100,155,155))
+        self.sense.set_pixel(self.x_pos, self.y_pos-change, self.bg_color)
         self.sense.set_pixel(self.x_pos, self.y_pos, (255,0,0))

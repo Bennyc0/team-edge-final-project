@@ -11,7 +11,12 @@ class Game():
         self.score = 0
         self.player_alive = True
 
-        self.player = Player(sense)
+        self.tx_spd = 0.05
+        self.tx_color = (255,0,0)
+
+        self.bg_color = (100,150,150)
+
+        self.player = Player(sense, self.bg_color)
         self.obstacles = []
     
     def play_game(self):
@@ -24,9 +29,7 @@ class Game():
             self.player.flap("down")
             self.delete_pipe()
 
-            # if len(self.obstacles) > 0:
             for obstacle in self.obstacles:
-                #     # if obstacle.y_pos > 0:
                 obstacle.movement()
 
             for event in self.sense.stick.get_events():
@@ -40,13 +43,13 @@ class Game():
 
             self.collision()
             turn += 1
-            sleep(1)
+            sleep(0.75)
 
-        self.sense.show_message("You Crashed! Game Over!", scroll_speed=0.05, text_colour=(255,0,0))
-        self.sense.show_message(f"Final Score: {self.score}", scroll_speed=0.05, text_colour=(255,0,0))
+        self.sense.show_message("You Crashed! Game Over!", scroll_speed=self.tx_spd, text_colour=self.tx_color)
+        self.sense.show_message(f"Final Score: {self.score}", scroll_speed=self.tx_spd, text_colour=self.tx_color)
 
     def start_up(self):
-        self.sense.show_message("Flappy Bird", scroll_speed=0.05, text_colour=(255,0,0))
+        self.sense.show_message("Flappy Bird", scroll_speed=self.tx_spd, text_colour=self.tx_color)
         self.background()
 
     def generate(self):
@@ -65,8 +68,8 @@ class Game():
         if len(self.obstacles) > 0 and self.obstacles[0].x_pos == 0:
             self.obstacles.remove(self.obstacles[0])
         for num in range(8):
-            self.sense.set_pixel(0, num, (100,150,150))
-            self.sense.set_pixel(1, num, (100,150,150))
+            self.sense.set_pixel(0, num, self.bg_color)
+            self.sense.set_pixel(1, num, self.bg_color)
 
     def collision(self):
         for pipe in self.obstacles:
@@ -80,7 +83,7 @@ class Game():
             self.player_alive = False
     
     def background(self):
-        lb = (100,150,150)
+        lb = self.bg_color
         background = [
             lb,lb,lb,lb,lb,lb,lb,lb,
             lb,lb,lb,lb,lb,lb,lb,lb,
