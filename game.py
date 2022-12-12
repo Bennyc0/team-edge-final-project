@@ -29,21 +29,21 @@ class Game():
             self.player.flap("down")
             self.delete_pipe()
 
-            for obstacle in self.obstacles:
-                obstacle.movement()
-
             for event in self.sense.stick.get_events():
                 if event.action == "pressed" and event.direction == "up":
                     self.player.flap(event.direction)
-                # else:
-                #     self.player.flap("")
+
+            for obstacle in self.obstacles:
+                obstacle.movement()
+                self.player.display(0)
+          
+            self.collision()
             
             if turn%4 == 0:
                 self.generate()
 
-            self.collision()
             turn += 1
-            sleep(0.75)
+            sleep(0.5)
 
         self.sense.show_message("You Crashed! Game Over!", scroll_speed=self.tx_spd, text_colour=self.tx_color)
         self.sense.show_message(f"Final Score: {self.score}", scroll_speed=self.tx_spd, text_colour=self.tx_color)
