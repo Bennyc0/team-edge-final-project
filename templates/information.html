@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Flappy Bird</title>
+</head>
+
+<body>
+    <div class="information">
+        <form class="submit" action="/leaderboard" method="post">
+            <input class="player_name" type="text" name="playername", placeholder="Your Name">
+            <p>Your Score: {{score}}</p>
+
+            <input class="send" type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

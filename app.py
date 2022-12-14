@@ -21,11 +21,11 @@ def leaderboard():
     global game
 
     leaderboard = {}
-    player_name = request.form['name']
+    player_name = request.form('playername')
 
     leaderboard.setdefault("player" + len(leaderboard), [player_name, game.score])
 
     return render_template('leaderboard.html', leaderboard=leaderboard)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port="7000")
