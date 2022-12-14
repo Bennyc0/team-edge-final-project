@@ -5,8 +5,8 @@ from player import Player
 import random
 
 class Game():
-    def __init__(self, sense):
-        self.sense = sense
+    def __init__(self):
+        self.sense = SenseHat()
         
         self.score = 0
         self.player_alive = True
@@ -16,7 +16,7 @@ class Game():
 
         self.bg_color = (100,150,150)
 
-        self.player = Player(sense, self.bg_color)
+        self.player = Player(self.sense, self.bg_color)
         self.obstacles = []
     
     def play_game(self):
@@ -31,19 +31,18 @@ class Game():
             self.delete_pipe()
 
             for event in self.sense.stick.get_events():
-                if event.action == "pressed": #and event.direction == "up":
-                    self.player.flap("up")#event.direction)
-                # else:
-                #     self.player.flap("")
+                if event.action == "pressed" and event.direction == "up":
+                    self.player.flap(event.direction)
 
             for obstacle in self.obstacles:
                 obstacle.movement()
                 self.player.display(0)
+          
+            self.collision()
             
             if turn%4 == 0:
                 self.generate()
 
-            self.collision()
             turn += 1
             sleep(0.5)
 
@@ -63,7 +62,7 @@ class Game():
             [0,4,5,6,7],
             [3,4,5,6,7]]
         
-        pipe = Obstacle(sense, random.choice(conf))
+        pipe = Obstacle(self.sense, random.choice(conf))
         self.obstacles.append(pipe)
 
     def delete_pipe(self):
@@ -97,9 +96,3 @@ class Game():
             lb,lb,lb,lb,lb,lb,lb,lb]
         
         self.sense.set_pixels(background)
-
-# --------------- Game --------------- #
-sense = SenseHat()
-game = Game(sense)
-
-game.play_game()
