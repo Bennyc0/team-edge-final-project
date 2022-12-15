@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from game import Game
 
 app = Flask(__name__)
+game = Game()
 
 @app.route("/")
 def index():
@@ -11,19 +12,24 @@ def index():
 def information():
     global game
 
-    game = Game()
     game.play_game()
 
     return render_template('information.html', score=game.score)
 
-@app.route("/leaderboard")
+@app.route("/leaderboard", methods=['GET', 'POST'])
 def leaderboard():
     global game
 
     leaderboard = {}
-    player_name = request.form('playername')
+    player_name = ""
 
-    leaderboard.setdefault("player" + len(leaderboard), [player_name, game.score])
+    try:
+        player_name = request.form['playername']
+    except:
+        return render_template('leaderboard.html', score_list=leaderboard)
+
+    if player_name != "":
+        leaderboard.setdefault("player" + str(len(leaderboard)+1), [player_name, game.score])
 
     return render_template('leaderboard.html', score_list=leaderboard)
 

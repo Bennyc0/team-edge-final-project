@@ -9,17 +9,17 @@
 </head>
 
 <body>
-    <h1>SenseHat Flappy Bird Leaderboards</h1>
-    <p>Note: Scores do not save as of right now.</p>
+    <div class="box">
+        <h1>SenseHat Flappy Bird Leaderboards</h1>
+        <p>Note: Scores do not save as of right now.</p>
 
-    {% for key in score_list %}
-        {% player_score = score_list.get(key) %}
-        <div class="names_scores">
-            <p>{{player_score[0]}}: {{player_score[1]}}</p>
-         </div>
-    {% endfor %}
-    
-    <a href="/game">Back to the Game</href>
-            
+        {% for key in score_list %}
+            <div class="names_scores">
+                <p>{{score_list.get(key)[0]}}: {{score_list.get(key)[1]}}</p>
+            </div>
+        {% endfor %}
+        
+        <a class="link" href="/">Back to the Game</href>
+    </div>        
 </body>
 </html>
