@@ -10,9 +10,10 @@
 
 <body>
     <h1>SenseHat Flappy Bird Leaderboards</h1>
+    <p>Note: Scores do not save as of right now.</p>
 
-    {% for key in leaderboard %}
-        {% player_score = leaderboard.get(key) %}
+    {% for key in score_list %}
+        {% player_score = score_list.get(key) %}
         <div class="names_scores">
             <p>{{player_score[0]}}: {{player_score[1]}}</p>
          </div>
