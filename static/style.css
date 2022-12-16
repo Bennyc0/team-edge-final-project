@@ -14,25 +14,34 @@ body {
     }
 
 .box {
-    background-color: white;
-    width: 25%;
-    padding: 50px;
+    background-color: #0CAFFF;
+    width: 35%;
+    padding: 20px;
     border-radius: 20px;
     border: solid;
     border-width: 3px;
     border-color: aqua;
     }
 
+.page_title {
+    font-size: 40px;
+    color: greenyellow;
+    }
+
+#score {
+    font-size: 40px;
+    }
+
 /* ---------- Submit Button ---------- */
 .submit_button {
-    margin: 10px;
+    background-color: #ACE1AF;
+    margin: 20px;
     }
 
 .submit_button:hover {
-    color: #98FB98;
-    background-color: #000000;
-    text-shadow: 0 0 10px #98FB98;
-    box-shadow: 0 0 10px #98FB98;    
+    color: #1034A6;
+    text-shadow: 0 0 10px #00693E;
+    box-shadow: 0 0 10px #00693E;   
     }
 
 
@@ -40,10 +49,11 @@ body {
 .link {
     width: auto;
     border: #000000;
-    border-radius: 20px;
-    color: #000000;
+    border-radius: 5px;
+    color: greenyellow;
     padding: 5px;
-    margin: 15px;
+    margin: 25px;
+    font-size: 25px;
     }
     
 .link a {
@@ -54,7 +64,7 @@ body {
     border-color: #0047AB;
     border-width: 3px;
     margin: 10px;
-    transition: .5s;
+    transition: 1s;
     }
     
 .link:visited {
@@ -63,7 +73,6 @@ body {
     
 .link:hover {
     color: #98FB98;
-    background-color: #000000;
     text-shadow: 0 0 10px #98FB98;
     box-shadow: 0 0 10px #98FB98;
     }

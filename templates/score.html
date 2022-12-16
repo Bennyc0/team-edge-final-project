@@ -11,12 +11,11 @@
 
 <body>
     <div class="box">
-        <form class="submit" action="/leaderboard" method="post">
-            <input class="player_name" type="text" name="playername", placeholder="Your Name">
-            <p>Your Score: {{score}}</p>
+        <h1 class="page_title">Your Score</h1>
 
-            <input class="submit_button" type="submit" value="Submit">
-        </form>
-    </div>
+        <p id="score">{{score}}</p>
+
+        <a class="link" href="/">Back</a>
+    </div>    
 </body>
 </html>
