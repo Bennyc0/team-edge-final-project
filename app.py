@@ -10,9 +10,9 @@ game = Game()
 def index():
     return render_template('index.html')
 
-@app.route("/information", methods=['GET','POST'])
-def information():
-    global score
+@app.route("/play", methods=['POST'])
+def play():
+    global game
 
     game.play_game()
     score = game.score
@@ -36,5 +36,5 @@ def leaderboards():
     return render_template('leaderboards.html', leaderboards=leaderboards)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port="7000")
+    app.run(debug=True, host='0.0.0.0', port="5000")
 
