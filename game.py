@@ -11,20 +11,24 @@ class Game():
         self.score = 0
         self.player_alive = True
 
-        self.tx_spd = 0.05
-        self.tx_color = (255,0,0)
+        self.tx_spd = 0.045
+        self.tx_color = (255,150,100)
 
         self.bg_color = (100,150,150)
 
         self.player = Player(self.sense, self.bg_color)
         self.obstacles = []
+
+        self.sense.low_light = True
     
     def play_game(self):
         turn = 0
 
         self.start_up()
+        sleep(0.25)
+        self.background()
         self.player.display(0)
-        sleep(1)
+        sleep(1.5)
 
         while self.player_alive:
             self.player.flap("down")
@@ -46,13 +50,16 @@ class Game():
             turn += 1
             sleep(0.5)
 
-        self.sense.show_message("You Crashed! Game Over!", scroll_speed=self.tx_spd, text_colour=self.tx_color)
+        self.sense.show_message("You Crashed!", scroll_speed=self.tx_spd, text_colour=self.tx_color)
         self.sense.show_message(f"Final Score: {self.score}", scroll_speed=self.tx_spd, text_colour=self.tx_color)
 
     def start_up(self):
         self.sense.show_message("Flappy Bird", scroll_speed=self.tx_spd, text_colour=self.tx_color)
-        self.background()
-
+        
+        for x in range(5, 0, -1):
+            self.sense.show_message(str(x), scroll_speed=self.tx_spd, text_colour=self.tx_color)
+        self.sense.show_message("FLAP!", scroll_speed=self.tx_spd, text_colour=self.tx_color)
+    
     def generate(self):
         conf = [
             [0,1,2,3,4],
